@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 import { Tag } from './tag';
 @Injectable()
 export class TagService {
-  private tagsUrl = '/api/v1/contacts';  // URL to web API
+  private tagsUrl = 'http://godnodejs.hopto.org:3000/api/v1/contacts';  // URL to web API
   constructor (private http: Http) {}
   getHeroes(): Observable<Tag[]> {
     return this.http.get(this.tagsUrl)

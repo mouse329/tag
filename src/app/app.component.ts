@@ -1,6 +1,6 @@
-import { TagService } from './tag.service';
 import { Tag } from './tag';
 import { Component, OnInit } from '@angular/core';
+import { TagService } from './tag.service';
 
 
 @Component({
@@ -12,20 +12,17 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit{
   errorMessage: string;
   heroes: Tag[];
+ 
   mode = 'Observable';
   constructor (private heroService: TagService) {}
-  ngOnInit() { this.getHeroes(); }
-  getHeroes() {
-    this.heroService.getHeroes()
-                     .subscribe(
-                       heroes => this.heroes = heroes,
-                       error =>  this.errorMessage = <any>error);
-  }
+  ngOnInit() { this.heroes=[]; }
+
+
   addHero(uid: number) {
     if (!uid) { return; }
     this.heroService.create(uid)
                      .subscribe(
                        hero  => this.heroes.push(hero),
-                       error =>  this.errorMessage = <any>error);
+                       error => this.errorMessage = <any>error);
   }
 }
